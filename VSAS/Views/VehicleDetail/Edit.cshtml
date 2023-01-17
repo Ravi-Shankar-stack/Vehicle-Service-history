@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Edit";
     var contactList = TempData.Peek("ContactNumber").ToString();
+    string errorMessage = ViewBag.errorMessage;
 }
 
 <h1>Edit</h1>
@@ -15,57 +16,65 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="VehicleId" />
             <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" type ="text"></input>
+                <label asp-for="UserId" class="control-label">Contact Number</label>
+                <input asp-for="UserId" class="form-control" type="text" id="userDetailId">
                 <span asp-validation-for="UserId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="VehicleRegNumber" class="control-label"></label>
-                <input asp-for="VehicleRegNumber" class="form-control" />
+                <label asp-for="VehicleRegNumber" class="control-label">Registration Number</label>
+                <input asp-for="VehicleRegNumber" class="form-control" type="text" id="registrationNumber" />
                 <span asp-validation-for="VehicleRegNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ChassisNumber" class="control-label"></label>
-                <input asp-for="ChassisNumber" class="form-control" />
+                <label asp-for="ChassisNumber" class="control-label">Chasis Number</label>
+                <input asp-for="ChassisNumber" class="form-control" type="text" id="chasisNumber" />
                 <span asp-validation-for="ChassisNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EngineNumber" class="control-label"></label>
-                <input asp-for="EngineNumber" class="form-control" />
+                <label asp-for="EngineNumber" class="control-label">Engine Number</label>
+                <input asp-for="EngineNumber" class="form-control" type="text" id="engineNumber" />
                 <span asp-validation-for="EngineNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Make" class="control-label"></label>
-                <input asp-for="Make" class="form-control" />
+                <label asp-for="Make" class="control-label">Make</label>
+                <input asp-for="Make" class="form-control" type="text" id="make" />
                 <span asp-validation-for="Make" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MakeMonthYear" class="control-label"></label>
-                <input asp-for="MakeMonthYear" class="form-control" />
-                <span asp-validation-for="MakeMonthYear" class="text-danger"></span>
+                <label asp-for="MakeMonth" class="control-label">Make Month</label>
+                <input asp-for="MakeMonth" class="form-control" type="text" id="makeMonth" />
+                <span asp-validation-for="MakeMonth" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PurchaseDate" class="control-label"></label>
-                <input asp-for="PurchaseDate" class="form-control" />
+                <label asp-for="MakeYear" class="control-label">Make Year</label>
+                <input asp-for="MakeYear" class="form-control" type="text" id="makeYear" />
+                <span asp-validation-for="MakeYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurchaseDate" class="control-label">Purchase Date</label>
+                <input asp-for="PurchaseDate" class="form-control" type="text" id="purchaseDate" />
                 <span asp-validation-for="PurchaseDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CurrentOdometerReading" class="control-label"></label>
-                <input asp-for="CurrentOdometerReading" class="form-control" />
+                <label asp-for="CurrentOdometerReading" class="control-label">Current Odometer Reading</label>
+                <input asp-for="CurrentOdometerReading" class="form-control" type="text" id="currentOdometerReading" />
                 <span asp-validation-for="CurrentOdometerReading" class="text-danger"></span>
             </div>
+            @*<div class="form-group">
+            <label asp-for="CreatedDate" class="control-label"></label>
+            <input asp-for="CreatedDate" class="form-control" />
+            <span asp-validation-for="CreatedDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UpdatedDate" class="control-label"></label>
+            <input asp-for="UpdatedDate" class="form-control" />
+            <span asp-validation-for="UpdatedDate" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                <button type="submit" id="save" class="btn btn-primary">Save</button>
             </div>
             <div class="form-group">
-                <label asp-for="UpdatedDate" class="control-label"></label>
-                <input asp-for="UpdatedDate" class="form-control" />
-                <span asp-validation-for="UpdatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <div id="errorMessage">@errorMessage</div>
             </div>
         </form>
     </div>

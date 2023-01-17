@@ -39,8 +39,7 @@ namespace VSAS.Controllers
             var monthList = Enumerable.Range(1, 12).Select(m => new SelectListItem { Text = new DateTime(2000, m, 1).ToString("MMMM"), Value = m.ToString() });
             ViewBag.MonthList = monthList;
 
-            var makeYearList = Enumerable.Range(1970, DateTime.Now.Year - 1970 + 1).Select(y => new SelectListItem { Text = y.ToString(), Value = y.ToString() });
-            ViewBag.MakeYearList = makeYearList;
+            
 
             return View();
         }
@@ -48,22 +47,7 @@ namespace VSAS.Controllers
         [HttpPost]
         public IActionResult Create(VehicleDetail vehicleDetail)
         {
-            //DateTime makeDate;
-            //if (DateTime.TryParseExact(vehicleDetail.MakeMonthYear.ToString(), "yyyyMM", CultureInfo.InvariantCulture, DateTimeStyles.None, out makeDate))
-            //{
-            //    if (vehicleDetail.PurchaseDate > makeDate)
-            //    {
-            //        _context.VehicleDetail.Add(vehicleDetail);
-            //        _context.SaveChanges();
-            //        return RedirectToAction("Index", "VehicleDetail");
-            //    }
-            //    else
-            //    {
-            //        ViewBag.ErrorMessage = "Purchase date should be greater than make month and year";
-            //    }
-
-            //}
-            //return View(vehicleDetail);
+            
 
             if (ModelState.IsValid)
             {
@@ -97,24 +81,31 @@ namespace VSAS.Controllers
             return View(vehicleDetail);
         }
 
+       
+
         [HttpPost]
-        public IActionResult Edit(VehicleDetail vehicleDetail)
+        public IActionResult Edit(long id, VehicleDetail vehicleDetail)
         {
+            if (id != vehicleDetail.VehicleId)
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
-                var dbVehicleDetail = _context.VehicleDetail.Find(vehicleDetail.VehicleId);
-                dbVehicleDetail.UserId = vehicleDetail.UserId;
-                dbVehicleDetail.VehicleRegNumber = vehicleDetail.VehicleRegNumber;
-                dbVehicleDetail.ChassisNumber = vehicleDetail.ChassisNumber;
-                dbVehicleDetail.EngineNumber = vehicleDetail.EngineNumber;
-                dbVehicleDetail.Make = vehicleDetail.Make;
-                dbVehicleDetail.MakeMonthYear = vehicleDetail.MakeMonthYear;
-                dbVehicleDetail.PurchaseDate = vehicleDetail.PurchaseDate;
-                dbVehicleDetail.CurrentOdometerReading = vehicleDetail.CurrentOdometerReading;
-                dbVehicleDetail.UpdatedDate = DateTime.Now;
-
+                _context.Update(vehicleDetail);
                 _context.SaveChanges();
-                return RedirectToAction("Index", "VehicleDetail");
+                RedirectToAction("Index");
+            }
+            return View(vehicleDetail);
+        }
+
+        public IActionResult Details(int id)
+        {
+            var vehicleDetail = _context.VehicleDetail.SingleOrDefault(x => x.VehicleId == id);
+            if (vehicleDetail == null)
+            {
+                return NotFound();
             }
             return View(vehicleDetail);
         }

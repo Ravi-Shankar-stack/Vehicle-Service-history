@@ -13,17 +13,17 @@
 <table class="table">
     <thead>
         <tr>
-            <th>ContactNumber</th>
-            <th>VehicleRegNumber</th>
-            <th>ChassisNumber</th>
-            <th>EngineNumber </th>
+            <th>Contact Number</th>
+            <th>Registration Number</th>
+            <th>Chassis Number</th>
+            <th>Engine Number </th>
             <th> Make</th>
-            <th> MakeMonthYear</th>
-            <th>PurchaseDate</th>
-            <th>CurrentOdometerReading  </th>
-            <th>CreatedDate </th>
-            <th>UpdatedDate</th>
-
+            <th> Make Month</th>
+            <th> Make Year</th>
+            <th>Purchase Date</th>
+            <th>Current Odometer Reading  </th>
+            <th>Created Date </th>
+            <th>Updated Date</th>
             <th>Action </th>
         </tr>
     </thead>
@@ -31,29 +31,30 @@
         @if (!Model.Any())
         {
             <tr>
-                <td colspan="10" align="center"></td>
+                <td colspan="10" align="center">No Vehicle details available</td>
             </tr>
         }
         else
         {
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>@contactnumber</td>
-                    <td>@item.VehicleRegNumber</td>
-                    <td>@item.ChassisNumber</td>
-                    <td>@item.EngineNumber</td>
-                    <td>@item.Make</td>
-                    <td>@item.MakeMonthYear</td>
-                    <td>@item.PurchaseDate</td>
-                    <td>@item.CurrentOdometerReading </td>
-                    <td>@item.CreatedDate </td>
-                    <td>@item.UpdatedDate </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.VehicleId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.VehicleId">Details</a>
-                    </td>
-                </tr>
+    <tr>
+        <td>@contactnumber</td>
+        <td>@item.VehicleRegNumber</td>
+        <td>@item.ChassisNumber</td>
+        <td>@item.EngineNumber</td>
+        <td>@item.Make</td>
+        <td>@item.MakeMonth</td>
+        <td>@item.MakeYear</td>
+        <td>@item.PurchaseDate</td>
+        <td>@item.CurrentOdometerReading </td>
+        <td>@item.CreatedDate </td>
+        <td>@item.UpdatedDate </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.VehicleId">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.VehicleId">Details</a>
+        </td>
+    </tr>
             }
         }
     </tbody>

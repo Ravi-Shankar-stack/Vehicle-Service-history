@@ -36,8 +36,12 @@ namespace VSAS.Models
         [RegularExpression(@"^[a-zA-Z0-9]+$", ErrorMessage = "Make must be combination of alphabets and/or numbers only")]
         public string Make { get; set; }
 
-        [Required(ErrorMessage = "MakeMonthYear is required")]
-        public int MakeMonthYear { get; set; }
+        [Required(ErrorMessage = "MakeMonth is required")]
+        public int MakeMonth { get; set; }
+
+        [RegularExpression(@"^\d{4}$", ErrorMessage = "Make Year should be a 4 digit number.")]
+        [Required(ErrorMessage = "MakeYear is required")]
+        public int MakeYear { get; set; }
 
         [Required(ErrorMessage = "PurchaseDate is required")]
         public DateTime PurchaseDate { get; set; }

@@ -5,7 +5,7 @@
     string errorMessage = ViewBag.errorMessage;
     var monthList = ViewBag.MonthList;
     var ContactNumberList = ViewBag.ContactNumberList;
-    var MakeYearList = ViewBag.MakeYearList;
+    
 }
 
 <div class="row">
@@ -37,11 +37,11 @@
             </div>
             <div class="form-group">
                 <label>Make Month</label>
-                <select asp-for="MakeMonthYear" class="form-control" asp-items="monthList" id="makeMonth"  type ="text"></select>
+                <select asp-for="MakeMonth" class="form-control" asp-items="monthList" id="makeMonth"  type ="text"></select>
             </div>
             <div class="form-group">
                 <label>Make Year</label>
-                <select asp-for="MakeMonthYear" class="form-control" asp-items="MakeYearList" id="makeYear" type ="text"></select>
+                <input asp-for="MakeYear" class="form-control"  id="makeYear" type ="text">
             </div>
             <div class="form-group">
                 <label asp-for="PurchaseDate">Purchase Date</label>
