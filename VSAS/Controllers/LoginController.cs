@@ -41,7 +41,8 @@ namespace VSAS.Controllers
                 else
                 {
                     TempData["loggedInEmailId"] = User.EmailId;
-                    return RedirectToAction("Index", "Dashboard");
+                    TempData["ContactNumber"] = User.ContactNumber;
+                return RedirectToAction("Index", "Dashboard");
                 }
             
 

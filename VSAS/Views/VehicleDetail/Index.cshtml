@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    var contactnumber = TempData.Peek("ContactNumber").ToString();
 }
 
 <h1>Index</h1>
@@ -12,6 +13,7 @@
 <table class="table">
     <thead>
         <tr>
+            <th>ContactNumber</th>
             <th>VehicleRegNumber</th>
             <th>ChassisNumber</th>
             <th>EngineNumber </th>
@@ -21,7 +23,7 @@
             <th>CurrentOdometerReading  </th>
             <th>CreatedDate </th>
             <th>UpdatedDate</th>
-            <th>UserDetail</th>
+
             <th>Action </th>
         </tr>
     </thead>
@@ -29,7 +31,7 @@
         @if (!Model.Any())
         {
             <tr>
-                <td colspan="11" align="center"></td>
+                <td colspan="10" align="center"></td>
             </tr>
         }
         else
@@ -37,6 +39,7 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    <td>@contactnumber</td>
                     <td>@item.VehicleRegNumber</td>
                     <td>@item.ChassisNumber</td>
                     <td>@item.EngineNumber</td>
@@ -46,7 +49,6 @@
                     <td>@item.CurrentOdometerReading </td>
                     <td>@item.CreatedDate </td>
                     <td>@item.UpdatedDate </td>
-                    <td>@item.UserDetail.ContactNumber </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.VehicleId">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.VehicleId">Details</a>
