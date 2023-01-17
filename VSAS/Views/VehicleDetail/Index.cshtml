@@ -2,7 +2,8 @@
 
 @{
     ViewData["Title"] = "Index";
-    var contactnumber = TempData.Peek("ContactNumber").ToString();
+    //var contactnumber = TempData.Peek("ContactNumber").ToString();
+    var contactnumber = ViewBag.ContactNumberList;
 }
 
 <h1>Index</h1>

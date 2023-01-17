@@ -2,7 +2,8 @@
 
 @{
     ViewData["Title"] = "Edit";
-    var contactList = TempData.Peek("ContactNumber").ToString();
+    var ContactNumberList = ViewBag.ContactNumberList;
+    var monthList = ViewBag.MonthList;
     string errorMessage = ViewBag.errorMessage;
 }
 
@@ -17,7 +18,7 @@
             <input type="hidden" asp-for="VehicleId" />
             <div class="form-group">
                 <label asp-for="UserId" class="control-label">Contact Number</label>
-                <input asp-for="UserId" class="form-control" type="text" id="userDetailId">
+                <select asp-for="UserId" class="form-control" asp-items="ContactNumberList" type="text" id="userDetailId"></select>
                 <span asp-validation-for="UserId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -42,7 +43,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="MakeMonth" class="control-label">Make Month</label>
-                <input asp-for="MakeMonth" class="form-control" type="text" id="makeMonth" />
+                <select asp-for="MakeMonth" class="form-control" asp-items="monthList" id="makeMonth" type="text"></select>
                 <span asp-validation-for="MakeMonth" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -60,16 +61,16 @@
                 <input asp-for="CurrentOdometerReading" class="form-control" type="text" id="currentOdometerReading" />
                 <span asp-validation-for="CurrentOdometerReading" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-            <label asp-for="CreatedDate" class="control-label"></label>
-            <input asp-for="CreatedDate" class="form-control" />
-            <span asp-validation-for="CreatedDate" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="UpdatedDate" class="control-label"></label>
-            <input asp-for="UpdatedDate" class="form-control" />
-            <span asp-validation-for="UpdatedDate" class="text-danger"></span>
-        </div>*@
+            <div class="form-group">
+                <label asp-for="CreatedDate" class="control-label"></label>
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedDate" class="control-label"></label>
+                <input asp-for="UpdatedDate" class="form-control" />
+                <span asp-validation-for="UpdatedDate" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <button type="submit" id="save" class="btn btn-primary">Save</button>
             </div>

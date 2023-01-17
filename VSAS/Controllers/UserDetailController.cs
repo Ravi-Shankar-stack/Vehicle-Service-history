@@ -23,7 +23,8 @@ namespace VSAS.Controllers
             string userEmailId;
             if(TempData.Peek("loggedInEmailId") == null)
             {
-                return NotFound();
+                var allUser = _context.UserDetails.ToList();
+                return View(allUser);
             }
             else
             {
@@ -107,7 +108,7 @@ namespace VSAS.Controllers
             {
                 _context.Update(userDetail);
                 _context.SaveChanges();
-                RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
             return View(userDetail);
         }

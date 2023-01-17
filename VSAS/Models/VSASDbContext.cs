@@ -17,5 +17,7 @@ namespace VSAS.Models
        public DbSet<Registration> Registrations { get; set; }
        public DbSet<UserDetails> UserDetails { get; set; }
        public DbSet<VehicleDetail> VehicleDetail { get; set; }
+       public DbSet<VehicleServiceHistory> VehicleServiceHistory { get; set; }
+       public DbSet<VSAS.Models.ServiceNotificationHistory> ServiceNotificationHistory { get; set; }
     }
 }

@@ -1,0 +1,60 @@
+﻿@model VSAS.Models.VehicleServiceHistory
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>VehicleServiceHistory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label>Registration Number</label>
+                <select asp-for="VehicleId" class="form-control" asp-items="ViewBag.RegistrationNumberList" id="vehicleDetailId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="OdometerReading">Odometer Reading</label>
+                <input asp-for="OdometerReading" class="form-control" id="odometerReading" />
+                <span asp-validation-for="OdometerReading" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceDoneDate">Service Done Date</label>
+                <input asp-for="ServiceDoneDate" type="datetime-local" class="form-control" id="serviceDoneDate" />
+                <span asp-validation-for="ServiceDoneDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceDetails">Service Details</label>
+                <input asp-for="ServiceDetails" class="form-control" id="serviceDoneDetails" />
+                <span asp-validation-for="ServiceDetails" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceDealerDetails">Service Dealer Details</label>
+                <input asp-for="ServiceDealerDetails" class="form-control" id="serviceDealerDetails" />
+                <span asp-validation-for="ServiceDealerDetails" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NextServiceDueDate">Next Service Due Date</label>
+                <input asp-for="NextServiceDueDate" type="datetime-local" class="form-control" id="nextServiceDueDate" />
+                <span asp-validation-for="NextServiceDueDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <<button type="submit" id="save" class="btn btn-primary">Save</button>
+            </div>
+            <div class="form-group">
+                <span class="text-danger" id="errorMessage">@ViewBag.errorMessage</span>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

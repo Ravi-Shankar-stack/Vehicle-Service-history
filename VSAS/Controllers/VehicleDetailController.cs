@@ -21,6 +21,13 @@ namespace VSAS.Controllers
         public IActionResult Index()
         {
             var AllVehicleDetail = _context.VehicleDetail.ToList();
+            var contactNumberList = _context.UserDetails.Select(u => u.ContactNumber).ToList();
+            List<SelectListItem> selectList = new List<SelectListItem>();
+            foreach (var item in contactNumberList)
+            {
+                selectList.Add(new SelectListItem { Text = item, Value = item });
+            }
+            ViewBag.ContactNumberList = selectList;
             return View(AllVehicleDetail);
         }
 
@@ -47,8 +54,8 @@ namespace VSAS.Controllers
         [HttpPost]
         public IActionResult Create(VehicleDetail vehicleDetail)
         {
-            
 
+            vehicleDetail.UpdatedDate = DateTime.Now;
             if (ModelState.IsValid)
             {
                 _context.VehicleDetail.Add(vehicleDetail);
@@ -57,7 +64,7 @@ namespace VSAS.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "Purchase date should be greater than make month and year";
+                ViewBag.errorMessage = "Purchase date should be greater than make month and year";
                 return View();
             }
 
@@ -69,12 +76,19 @@ namespace VSAS.Controllers
         public IActionResult Edit(long id)
         {
             var vehicleDetail = _context.VehicleDetail.Find(id);
-            var contactNumberList = TempData.Peek("ContactNumber").ToString();
+            //var contactNumberList = TempData.Peek("ContactNumber").ToString();
+            var contactNumberList = _context.UserDetails.Select(u => u.ContactNumber).ToList();
+            List<SelectListItem> selectList = new List<SelectListItem>();
+            foreach (var item in contactNumberList)
+            {
+                selectList.Add(new SelectListItem { Text = item, Value = item });
+            }
+            ViewBag.ContactNumberList = selectList;
             var monthList = Enumerable.Range(1, 12).Select(m => new SelectListItem { Text = new DateTime(2000, m, 1).ToString("MMMM"), Value = m.ToString() });
             var makeYearList = Enumerable.Range(1970, DateTime.Now.Year - 1970 + 1).Select(y => new SelectListItem { Text = y.ToString(), Value = y.ToString() });
 
             
-            ViewBag.ContactNumberList = contactNumberList;
+            //ViewBag.ContactNumberList = contactNumberList;
             ViewBag.MonthList = monthList;
             ViewBag.MakeYearList = makeYearList;
 
@@ -95,9 +109,13 @@ namespace VSAS.Controllers
             {
                 _context.Update(vehicleDetail);
                 _context.SaveChanges();
-                RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
-            return View(vehicleDetail);
+            else
+            {
+                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                return View(vehicleDetail);
+            }
         }
 
         public IActionResult Details(int id)
