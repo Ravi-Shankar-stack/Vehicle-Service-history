@@ -2,8 +2,17 @@
 
 @{
     ViewData["Title"] = "Index";
+    var contactnumber = "";
+    if (!Model.Any())
+    {
+         contactnumber = ViewBag.ContactNumberList;
+    }
+            else
+            {
+                 contactnumber = TempData.Peek("ContactNumber").ToString();
+            }
     //var contactnumber = TempData.Peek("ContactNumber").ToString();
-    var contactnumber = ViewBag.ContactNumberList;
+    //var contactnumber = ViewBag.ContactNumberList;
 }
 
 <h1>Index</h1>
@@ -39,23 +48,23 @@
         {
             @foreach (var item in Model)
             {
-    <tr>
-        <td>@contactnumber</td>
-        <td>@item.VehicleRegNumber</td>
-        <td>@item.ChassisNumber</td>
-        <td>@item.EngineNumber</td>
-        <td>@item.Make</td>
-        <td>@item.MakeMonth</td>
-        <td>@item.MakeYear</td>
-        <td>@item.PurchaseDate</td>
-        <td>@item.CurrentOdometerReading </td>
-        <td>@item.CreatedDate </td>
-        <td>@item.UpdatedDate </td>
-        <td>
-            <a asp-action="Edit" asp-route-id="@item.VehicleId">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.VehicleId">Details</a>
-        </td>
-    </tr>
+                <tr>
+                    <td>@contactnumber</td>
+                    <td>@item.VehicleRegNumber</td>
+                    <td>@item.ChassisNumber</td>
+                    <td>@item.EngineNumber</td>
+                    <td>@item.Make</td>
+                    <td>@item.MakeMonth</td>
+                    <td>@item.MakeYear</td>
+                    <td>@item.PurchaseDate</td>
+                    <td>@item.CurrentOdometerReading </td>
+                    <td>@item.CreatedDate </td>
+                    <td>@item.UpdatedDate </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.VehicleId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.VehicleId">Details</a>
+                    </td>
+                </tr>
             }
         }
     </tbody>

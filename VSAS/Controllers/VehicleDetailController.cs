@@ -20,14 +20,17 @@ namespace VSAS.Controllers
         }
         public IActionResult Index()
         {
+            //var AllVehicleDetail = _context.VehicleDetail.ToList();
+            ////var contactNumberList = _context.UserDetails.Select(u => u.ContactNumber).ToList();
+            ////List<SelectListItem> selectList = new List<SelectListItem>();
+            ////foreach (var item in contactNumberList)
+            ////{
+            ////    selectList.Add(new SelectListItem { Text = item, Value = item });
+            ////}
+            //ViewBag.ContactNumberList = _context.UserDetails.Select(u => u.ContactNumber);
+            //return View(AllVehicleDetail);
+
             var AllVehicleDetail = _context.VehicleDetail.ToList();
-            var contactNumberList = _context.UserDetails.Select(u => u.ContactNumber).ToList();
-            List<SelectListItem> selectList = new List<SelectListItem>();
-            foreach (var item in contactNumberList)
-            {
-                selectList.Add(new SelectListItem { Text = item, Value = item });
-            }
-            ViewBag.ContactNumberList = selectList;
             return View(AllVehicleDetail);
         }
 
