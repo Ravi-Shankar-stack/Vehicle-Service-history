@@ -7,7 +7,7 @@ using VSAS.Models;
 
 namespace VSAS.Controllers
 {
-    [Route("Registration")]
+    
     public class RegistrationController : Controller
     {
         private VSASDbContext _context;
@@ -18,7 +18,7 @@ namespace VSAS.Controllers
         }
 
         [HttpGet]
-        [Route("Create")]
+        [Route("Registration/Create")]
         public IActionResult Create()
         {
             ViewBag.errorMessage = "";
@@ -26,22 +26,33 @@ namespace VSAS.Controllers
         }
 
         [HttpPost]
-        [Route("Create")]
+        [Route("Registration/Create")]
         public IActionResult Create(Registration registration)
         {
             
             
             if (ModelState.IsValid)
             {
-                _context.Registrations.Add(registration);
-                _context.SaveChanges();
-                return RedirectToAction("Index", "Login");
+                try
+                {
+                    _context.Registrations.Add(registration);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index", "Login");
+                }
+
+                catch
+                {
+                    ViewBag.errorMessage = "Email Id Already Exists.";
+                    return View();
+                }
             }
             else
             {
                 ViewBag.errorMessage = "Email Id Already Exists.";
                 return View();
             }
+
+
         }
     }
 }

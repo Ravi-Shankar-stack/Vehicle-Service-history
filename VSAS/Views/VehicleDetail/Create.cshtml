@@ -5,7 +5,7 @@
     string errorMessage = ViewBag.errorMessage;
     var monthList = ViewBag.MonthList;
     var ContactNumberList = ViewBag.ContactNumberList;
-    
+
 }
 
 <h1>Create</h1>
@@ -18,35 +18,35 @@
         <form asp-action="Create">
             <div class="form-group">
                 <label>Contact Number</label>
-                <select asp-for="UserId" class="form-control" asp-items="ContactNumberList" id="userDetailId" type ="text"></select>
+                <select asp-for="UserId" class="form-control" asp-items="ContactNumberList" id="userDetailId" type="text"></select>
             </div>
             <div class="form-group">
                 <label asp-for="VehicleRegNumber">Registration Number</label>
-                <input asp-for="VehicleRegNumber" class="form-control" id="registrationNumber"  type ="text"/>
+                <input asp-for="VehicleRegNumber" class="form-control" id="registrationNumber" type="text" />
                 <span asp-validation-for="VehicleRegNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ChassisNumber">Chasis Number</label>
-                <input asp-for="ChassisNumber" class="form-control" id="chasisNumber"  type ="text" />
+                <input asp-for="ChassisNumber" class="form-control" id="chasisNumber" type="text" />
                 <span asp-validation-for="ChassisNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EngineNumber">Engine Number</label>
-                <input asp-for="EngineNumber" class="form-control" id="engineNumber"  type ="text" />
+                <input asp-for="EngineNumber" class="form-control" id="engineNumber" type="text" />
                 <span asp-validation-for="EngineNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Make">Make</label>
-                <input asp-for="Make" class="form-control" id="make"  type ="text"/>
+                <input asp-for="Make" class="form-control" id="make" type="text" />
                 <span asp-validation-for="Make" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label>Make Month</label>
-                <select asp-for="MakeMonth" class="form-control" asp-items="monthList" id="makeMonth"  type ="text"></select>
+                <select asp-for="MakeMonth" class="form-control" asp-items="monthList" id="makeMonth" type="text"></select>
             </div>
             <div class="form-group">
                 <label>Make Year</label>
-                <input asp-for="MakeYear" class="form-control"  id="makeYear" type ="text">
+                <input asp-for="MakeYear" class="form-control" id="makeYear" type="text">
             </div>
             <div class="form-group">
                 <label asp-for="PurchaseDate">Purchase Date</label>
@@ -55,16 +55,20 @@
             </div>
             <div class="form-group">
                 <label asp-for="CurrentOdometerReading">Current Odometer Reading</label>
-                <input asp-for="CurrentOdometerReading" class="form-control" id="currentOdometerReading" type ="text"/>
+                <input asp-for="CurrentOdometerReading" class="form-control" id="currentOdometerReading" type="text" />
                 <span asp-validation-for="CurrentOdometerReading" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <button type="submit" id="save" class="btn btn-primary">Save</button>
             </div>
             <div class="form-group">
-                <div id="errorMessage">@errorMessage</div>
+                <div id="errorMessage">@ViewBag.errorMessage</div>
             </div>
         </form>
 
     </div>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
