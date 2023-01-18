@@ -18,7 +18,7 @@ namespace VSAS.Models
 
         [Required(ErrorMessage = "VehicleRegNumber is required")]
         [StringLength(50, ErrorMessage = "VehicleRegNumber cannot be longer than 50 characters")]
-        //[RegularExpression(@"^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$", ErrorMessage = "Vehicle registration number must be in format of AZ09AZ1234")]
+        [RegularExpression(@"^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$", ErrorMessage = "Vehicle registration number must be in format of AZ09AZ1234")]
         public string VehicleRegNumber { get; set; }
 
         [Required(ErrorMessage = "ChassisNumber is required")]

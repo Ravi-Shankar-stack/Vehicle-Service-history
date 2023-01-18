@@ -6,9 +6,12 @@
 
 <h1>Index</h1>
 
-<div>
-    <a href="#" class="alert-success">Notification Successfully Sent to Service Due Vehicle Owner</a>
-</div>
+@if (Model.Any())
+{
+    <div>
+        <a href="#" class="alert-success">Notification Successfully Sent to Service Due Vehicle Owner</a>
+    </div>
+}
 
 <div>
     <a asp-action="Create" id="createNew">Create New</a>
@@ -44,42 +47,42 @@
             <th>
                 @Html.DisplayNameFor(model => model.Vehicle)
             </th>
-            <th></th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OdometerReading)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ServiceDoneDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ServiceDetails)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ServiceDealerDetails)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NextServiceDueDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vehicle.ChassisNumber)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ServiceHistoryId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ServiceHistoryId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ServiceHistoryId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OdometerReading)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceDoneDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceDealerDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NextServiceDueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vehicle.ChassisNumber)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ServiceHistoryId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ServiceHistoryId">Details</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

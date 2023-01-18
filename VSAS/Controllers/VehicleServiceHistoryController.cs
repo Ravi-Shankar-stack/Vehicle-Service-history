@@ -26,7 +26,12 @@ namespace VSAS.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.VehicleList = new SelectList(_context.VehicleDetail, "VehicleId", "VehicleRegNumber");
+            //var vehicleList = _context.VehicleDetail.Select(u => u.VehicleRegNumber).ToList();
+            //ViewBag.vehicleList = vehicleList;
+            //return View();
+
+            var vehicleList = _context.VehicleDetail.Select(u => new SelectListItem { Value = u.VehicleId.ToString(), Text = u.VehicleRegNumber }).ToList();
+            ViewBag.vehicleList = vehicleList;
             return View();
         }
 
@@ -48,8 +53,14 @@ namespace VSAS.Controllers
                 else
                 {
                     ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                    return View();
                 }
             }
+            //else
+            //{
+            //    ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+            //    return View();
+            //}
             ViewBag.VehicleList = new SelectList(_context.VehicleDetail, "VehicleId", "VehicleRegNumber", vehicleServiceHistory.VehicleId);
             return View(vehicleServiceHistory);
         }

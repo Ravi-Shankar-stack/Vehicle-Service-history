@@ -67,7 +67,7 @@ namespace VSAS.Controllers
             }
             else
             {
-                ViewBag.errorMessage = "Purchase date should be greater than make month and year";
+                ViewBag.errorMessage = "Purchase Date Should be Greater than Make Month and Year";
                 return View();
             }
 
