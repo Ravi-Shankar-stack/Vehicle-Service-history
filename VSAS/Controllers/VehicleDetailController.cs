@@ -18,6 +18,9 @@ namespace VSAS.Controllers
         {
             _context = context;
         }
+
+        [HttpGet]
+        [Route("/VehicleDetail/Index")]
         public IActionResult Index()
         {
             //var AllVehicleDetail = _context.VehicleDetail.ToList();
@@ -35,6 +38,7 @@ namespace VSAS.Controllers
         }
 
         [HttpGet]
+        [Route("/VehicleDetail/Create")]
         public IActionResult Create()
         {
             var contactNumberList = _context.UserDetails.Select(u => u.ContactNumber).ToList();
@@ -55,6 +59,7 @@ namespace VSAS.Controllers
         }
 
         [HttpPost]
+        [Route("/VehicleDetail/Create")]
         public IActionResult Create(VehicleDetail vehicleDetail)
         {
 
@@ -76,8 +81,10 @@ namespace VSAS.Controllers
 
 
         [HttpGet]
-        public IActionResult Edit(long id)
+        [Route("/VehicleDetail/Edit/{id?}")]
+        public IActionResult Edit(long id =0)
         {
+
             var vehicleDetail = _context.VehicleDetail.Find(id);
             //var contactNumberList = TempData.Peek("ContactNumber").ToString();
             var contactNumberList = _context.UserDetails.Select(u => u.ContactNumber).ToList();
@@ -90,7 +97,7 @@ namespace VSAS.Controllers
             var monthList = Enumerable.Range(1, 12).Select(m => new SelectListItem { Text = new DateTime(2000, m, 1).ToString("MMMM"), Value = m.ToString() });
             var makeYearList = Enumerable.Range(1970, DateTime.Now.Year - 1970 + 1).Select(y => new SelectListItem { Text = y.ToString(), Value = y.ToString() });
 
-            
+            ViewBag.errorMessage = "";
             //ViewBag.ContactNumberList = contactNumberList;
             ViewBag.MonthList = monthList;
             ViewBag.MakeYearList = makeYearList;

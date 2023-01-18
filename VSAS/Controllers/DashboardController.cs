@@ -8,6 +8,8 @@ namespace VSAS.Controllers
 {
     public class DashboardController : Controller
     {
+        [HttpGet]
+        [Route("/Dashboard/Index")]
         public IActionResult Index()
         {
             return View();

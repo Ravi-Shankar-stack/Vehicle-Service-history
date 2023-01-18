@@ -15,7 +15,8 @@ namespace VSAS.Controllers
             _context = context;
         }
 
-
+        [HttpGet]
+        [Route("/UserDetail/Index")]
         public IActionResult Index()
         {
             
@@ -73,6 +74,7 @@ namespace VSAS.Controllers
             //}
             return View(allUsers);
         }
+
 
         public IActionResult Details(int id)
         {

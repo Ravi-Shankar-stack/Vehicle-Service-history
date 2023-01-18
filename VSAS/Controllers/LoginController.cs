@@ -18,14 +18,14 @@ namespace VSAS.Controllers
 
         [HttpGet]
         [Route("~/")]
-        [Route("/login")]
+        [Route("/Login/Index")]
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/login")]
+        [Route("/Login/Index")]
         public IActionResult Index(Registration registration)
         {
 
@@ -42,7 +42,7 @@ namespace VSAS.Controllers
                 {
                     TempData["loggedInEmailId"] = User.EmailId;
                     TempData["ContactNumber"] = User.ContactNumber;
-                return RedirectToAction("Index", "Dashboard");
+                    return RedirectToAction("Index", "Dashboard");
                 }
             
 

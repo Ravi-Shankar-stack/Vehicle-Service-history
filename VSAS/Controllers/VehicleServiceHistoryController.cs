@@ -17,6 +17,9 @@ namespace VSAS.Controllers
             
             _context = context;
         }
+
+        [HttpGet]
+        [Route("/VehicleServiceHistory/Index")]
         public IActionResult Index()
         {
             var serviceHistory = _context.VehicleServiceHistory.ToList();
@@ -24,6 +27,7 @@ namespace VSAS.Controllers
         }
 
         [HttpGet]
+        [Route("/VehicleServiceHistory/Create")]
         public IActionResult Create()
         {
             //var vehicleList = _context.VehicleDetail.Select(u => u.VehicleRegNumber).ToList();
@@ -36,6 +40,7 @@ namespace VSAS.Controllers
         }
 
         [HttpPost]
+        [Route("/VehicleServiceHistory/Create")]
         public IActionResult Create(VehicleServiceHistory vehicleServiceHistory)
         {
             if (ModelState.IsValid)

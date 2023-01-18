@@ -21,6 +21,7 @@ namespace VSAS.Controllers
         [Route("Create")]
         public IActionResult Create()
         {
+            ViewBag.errorMessage = "";
             return View();
         }
 
@@ -28,6 +29,8 @@ namespace VSAS.Controllers
         [Route("Create")]
         public IActionResult Create(Registration registration)
         {
+            
+            
             if (ModelState.IsValid)
             {
                 _context.Registrations.Add(registration);
