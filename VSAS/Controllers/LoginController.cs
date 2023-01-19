@@ -18,14 +18,14 @@ namespace VSAS.Controllers
 
         [HttpGet]
         [Route("~/")]
-        [Route("/Login/Index")]
+        [Route("/login")]
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/Login/Index")]
+        [Route("/login")]
         public IActionResult Index(Registration registration)
         {
 
