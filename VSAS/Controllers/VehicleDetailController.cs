@@ -63,7 +63,7 @@ namespace VSAS.Controllers
                 
 
                
-                if (string.IsNullOrEmpty(vehicleDetail.VehicleRegNumber) || !Regex.IsMatch(vehicleDetail.VehicleRegNumber, @"^[a-zA-Z0-9]+$"))
+                if (string.IsNullOrEmpty(vehicleDetail.VehicleRegNumber))
                 {
                     
                     ViewBag.errorMessage = "Purchase Date Should be Greater than Make Month and Year";
@@ -204,7 +204,7 @@ namespace VSAS.Controllers
                 return View(vehicleDetail);
             }
 
-            if (string.IsNullOrEmpty(vehicleDetail.VehicleRegNumber) || !Regex.IsMatch(vehicleDetail.VehicleRegNumber, @"^[a-zA-Z0-9]+$"))
+            if (string.IsNullOrEmpty(vehicleDetail.VehicleRegNumber))
             {
 
                 ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
