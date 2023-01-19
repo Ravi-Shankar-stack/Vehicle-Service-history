@@ -46,52 +46,52 @@ namespace VSAS.Controllers
             
             if (vehicleServiceHistory.OdometerReading <= 0)
             {
-                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                ViewBag.ErrorMessage = "Service Done Date Should be Greater than Purchase Date..";
                 return View();
             }
 
             
             if (vehicleServiceHistory.ServiceDoneDate == null)
             {
-                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                ViewBag.ErrorMessage = "Service Done Date Should be Greater than Purchase Date..";
                 return View();
             }
 
             
             if (string.IsNullOrEmpty(vehicleServiceHistory.ServiceDetails))
             {
-                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                ViewBag.ErrorMessage = "Service Done Date Should be Greater than Purchase Date..";
                 return View();
             }
             else if (vehicleServiceHistory.ServiceDetails.Length > 100)
             {
-                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                ViewBag.ErrorMessage = "Service Done Date Should be Greater than Purchase Date..";
                 return View();
             }
 
             
             if (string.IsNullOrEmpty(vehicleServiceHistory.ServiceDealerDetails))
             {
-                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                ViewBag.ErrorMessage = "Service Done Date Should be Greater than Purchase Date..";
                 return View();
             }
             else if (vehicleServiceHistory.ServiceDealerDetails.Length > 100)
             {
-                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                ViewBag.ErrorMessage = "Service Done Date Should be Greater than Purchase Date..";
                 return View();
             }
 
             
             if (vehicleServiceHistory.NextServiceDueDate == null)
             {
-                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                ViewBag.ErrorMessage = "Service Done Date Should be Greater than Purchase Date..";
                 return View();
             }
 
             
             if (vehicleServiceHistory.CreatedDate == null)
             {
-                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                ViewBag.ErrorMessage = "Service Done Date Should be Greater than Purchase Date..";
                 return View();
             }
 
@@ -114,13 +114,13 @@ namespace VSAS.Controllers
                     }
                     catch
                     {
-                        ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                        ViewBag.ErrorMessage = "Service Done Date Should be Greater than Purchase Date..";
                         return View();
                     }
                 }
                 else
                 {
-                    ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                    ViewBag.ErrorMessage = "Service Done Date Should be Greater than Purchase Date..";
                     return View();
                 }
             }

@@ -35,7 +35,7 @@ namespace VSAS.Controllers
             
                 if(User == null)
                 {
-                    ViewBag.errorMessage = "Invalid Attempt, Please try again.";
+                    ViewBag.errorMessage = "Invalid Attempt. Please try again";
                     return View();
                 }
                 else

@@ -200,14 +200,14 @@ namespace VSAS.Controllers
         {
             if (id != vehicleDetail.VehicleId)
             {
-                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                ViewBag.errorMessage = "Only Alphabets and Numbers allowed.";
                 return View(vehicleDetail);
             }
 
             if (string.IsNullOrEmpty(vehicleDetail.VehicleRegNumber))
             {
 
-                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                ViewBag.errorMessage = "Only Alphabets and Numbers allowed.";
                 return View();
 
             }
@@ -215,7 +215,7 @@ namespace VSAS.Controllers
 
             if (string.IsNullOrEmpty(vehicleDetail.ChassisNumber) || !Regex.IsMatch(vehicleDetail.ChassisNumber, @"^[a-zA-Z0-9]+$"))
             {
-                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                ViewBag.errorMessage = "Only Alphabets and Numbers allowed.";
                 return View();
 
             }
@@ -223,7 +223,7 @@ namespace VSAS.Controllers
 
             if (string.IsNullOrEmpty(vehicleDetail.EngineNumber) || !Regex.IsMatch(vehicleDetail.EngineNumber, @"^[a-zA-Z0-9]+$"))
             {
-                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                ViewBag.errorMessage = "Only Alphabets and Numbers allowed.";
                 return View();
 
             }
@@ -231,7 +231,7 @@ namespace VSAS.Controllers
 
             if (string.IsNullOrEmpty(vehicleDetail.Make) || !Regex.IsMatch(vehicleDetail.Make, @"^[a-zA-Z0-9]+$"))
             {
-                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                ViewBag.errorMessage = "Only Alphabets and Numbers allowed.";
                 return View();
 
             }
@@ -239,7 +239,7 @@ namespace VSAS.Controllers
 
             if (vehicleDetail.MakeMonth < 1 || vehicleDetail.MakeMonth > 12)
             {
-                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                ViewBag.errorMessage = "Only Alphabets and Numbers allowed.";
                 return View();
 
             }
@@ -247,7 +247,7 @@ namespace VSAS.Controllers
 
             if (vehicleDetail.MakeYear < 1900 || vehicleDetail.MakeYear > DateTime.Now.Year)
             {
-                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                ViewBag.errorMessage = "Only Alphabets and Numbers allowed.";
                 return View();
 
             }
@@ -255,7 +255,7 @@ namespace VSAS.Controllers
 
             if (vehicleDetail.PurchaseDate == null)
             {
-                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                ViewBag.errorMessage = "Only Alphabets and Numbers allowed.";
                 return View();
 
             }
@@ -263,20 +263,20 @@ namespace VSAS.Controllers
 
             if (string.IsNullOrEmpty(vehicleDetail.CurrentOdometerReading.ToString()))
             {
-                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                ViewBag.errorMessage = "Only Alphabets and Numbers allowed.";
                 return View();
 
             }
             else if (!Regex.IsMatch(vehicleDetail.CurrentOdometerReading.ToString(), @"^[0-9]+$"))
             {
-                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                ViewBag.errorMessage = "Only Alphabets and Numbers allowed.";
                 return View();
 
             }
 
             if (vehicleDetail.CreatedDate == null)
             {
-                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                ViewBag.errorMessage = "Only Alphabets and Numbers allowed.";
                 return View();
 
             }
@@ -292,13 +292,13 @@ namespace VSAS.Controllers
                 }
                 catch
                 {
-                    ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                    ViewBag.errorMessage = "Only Alphabets and Numbers allowed.";
                     return View(vehicleDetail);
                 }
             }
             else
             {
-                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                ViewBag.errorMessage = "Only Alphabets and Numbers allowed.";
                 return View(vehicleDetail);
             }
         }
