@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using VSAS.Models;
 
@@ -23,15 +25,7 @@ namespace VSAS.Controllers
         [Route("/VehicleDetail/Index")]
         public IActionResult Index()
         {
-            //var AllVehicleDetail = _context.VehicleDetail.ToList();
-            ////var contactNumberList = _context.UserDetails.Select(u => u.ContactNumber).ToList();
-            ////List<SelectListItem> selectList = new List<SelectListItem>();
-            ////foreach (var item in contactNumberList)
-            ////{
-            ////    selectList.Add(new SelectListItem { Text = item, Value = item });
-            ////}
-            //ViewBag.ContactNumberList = _context.UserDetails.Select(u => u.ContactNumber);
-            //return View(AllVehicleDetail);
+            
 
             var AllVehicleDetail = _context.VehicleDetail.ToList();
             return View(AllVehicleDetail);
@@ -64,11 +58,105 @@ namespace VSAS.Controllers
         {
 
             vehicleDetail.UpdatedDate = DateTime.Now;
+
+            
+                
+
+               
+                if (string.IsNullOrEmpty(vehicleDetail.VehicleRegNumber) || !Regex.IsMatch(vehicleDetail.VehicleRegNumber, @"^[a-zA-Z0-9]+$"))
+                {
+                    
+                    ViewBag.errorMessage = "Purchase Date Should be Greater than Make Month and Year";
+                    return View();
+                
+                }
+
+                
+                if (string.IsNullOrEmpty(vehicleDetail.ChassisNumber) || !Regex.IsMatch(vehicleDetail.ChassisNumber, @"^[a-zA-Z0-9]+$"))
+                {
+                ViewBag.errorMessage = "Purchase Date Should be Greater than Make Month and Year";
+                return View();
+
+                }
+
+            
+            if (string.IsNullOrEmpty(vehicleDetail.EngineNumber) || !Regex.IsMatch(vehicleDetail.EngineNumber, @"^[a-zA-Z0-9]+$"))
+                {
+                ViewBag.errorMessage = "Purchase Date Should be Greater than Make Month and Year";
+                return View();
+
+            }
+
+           
+            if (string.IsNullOrEmpty(vehicleDetail.Make) || !Regex.IsMatch(vehicleDetail.Make, @"^[a-zA-Z0-9]+$"))
+                {
+                ViewBag.errorMessage = "Purchase Date Should be Greater than Make Month and Year";
+                return View();
+
+            }
+
+            
+            if (vehicleDetail.MakeMonth < 1 || vehicleDetail.MakeMonth > 12)
+                {
+                ViewBag.errorMessage = "Purchase Date Should be Greater than Make Month and Year";
+                return View();
+
+            }
+
+            
+            if (vehicleDetail.MakeYear < 1900 || vehicleDetail.MakeYear > DateTime.Now.Year)
+                {
+                ViewBag.errorMessage = "Purchase Date Should be Greater than Make Month and Year";
+                return View();
+
+            }
+
+            
+            if (vehicleDetail.PurchaseDate == null)
+                {
+                ViewBag.errorMessage = "Purchase Date Should be Greater than Make Month and Year";
+                return View();
+
+            }
+
+            
+            if (string.IsNullOrEmpty(vehicleDetail.CurrentOdometerReading.ToString()))
+                {
+                ViewBag.errorMessage = "Purchase Date Should be Greater than Make Month and Year";
+                return View();
+
+            }
+            else if (!Regex.IsMatch(vehicleDetail.CurrentOdometerReading.ToString(), @"^[0-9]+$"))
+                {
+                ViewBag.errorMessage = "Purchase Date Should be Greater than Make Month and Year";
+                return View();
+
+            }
+
+            if (vehicleDetail.CreatedDate == null)
+                {
+                ViewBag.errorMessage = "Purchase Date Should be Greater than Make Month and Year";
+                return View();
+
+            }
+
+
+
+
+
             if (ModelState.IsValid)
             {
-                _context.VehicleDetail.Add(vehicleDetail);
-                _context.SaveChanges();
-                return RedirectToAction("Index", "VehicleDetail");
+                try
+                {
+                    _context.VehicleDetail.Add(vehicleDetail);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index", "VehicleDetail");
+                }
+                catch
+                {
+                    ViewBag.errorMessage = "Purchase Date Should be Greater than Make Month and Year";
+                    return View();
+                }
             }
             else
             {
@@ -112,14 +200,101 @@ namespace VSAS.Controllers
         {
             if (id != vehicleDetail.VehicleId)
             {
-                return NotFound();
+                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                return View(vehicleDetail);
             }
+
+            if (string.IsNullOrEmpty(vehicleDetail.VehicleRegNumber) || !Regex.IsMatch(vehicleDetail.VehicleRegNumber, @"^[a-zA-Z0-9]+$"))
+            {
+
+                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                return View();
+
+            }
+
+
+            if (string.IsNullOrEmpty(vehicleDetail.ChassisNumber) || !Regex.IsMatch(vehicleDetail.ChassisNumber, @"^[a-zA-Z0-9]+$"))
+            {
+                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                return View();
+
+            }
+
+
+            if (string.IsNullOrEmpty(vehicleDetail.EngineNumber) || !Regex.IsMatch(vehicleDetail.EngineNumber, @"^[a-zA-Z0-9]+$"))
+            {
+                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                return View();
+
+            }
+
+
+            if (string.IsNullOrEmpty(vehicleDetail.Make) || !Regex.IsMatch(vehicleDetail.Make, @"^[a-zA-Z0-9]+$"))
+            {
+                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                return View();
+
+            }
+
+
+            if (vehicleDetail.MakeMonth < 1 || vehicleDetail.MakeMonth > 12)
+            {
+                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                return View();
+
+            }
+
+
+            if (vehicleDetail.MakeYear < 1900 || vehicleDetail.MakeYear > DateTime.Now.Year)
+            {
+                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                return View();
+
+            }
+
+
+            if (vehicleDetail.PurchaseDate == null)
+            {
+                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                return View();
+
+            }
+
+
+            if (string.IsNullOrEmpty(vehicleDetail.CurrentOdometerReading.ToString()))
+            {
+                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                return View();
+
+            }
+            else if (!Regex.IsMatch(vehicleDetail.CurrentOdometerReading.ToString(), @"^[0-9]+$"))
+            {
+                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                return View();
+
+            }
+
+            if (vehicleDetail.CreatedDate == null)
+            {
+                ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                return View();
+
+            }
+
 
             if (ModelState.IsValid)
             {
-                _context.Update(vehicleDetail);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    _context.Update(vehicleDetail);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    ViewBag.errorMessage = "Only Alphabets and Numbers Allowed (Make Field)";
+                    return View(vehicleDetail);
+                }
             }
             else
             {

@@ -5,6 +5,15 @@
     var ContactNumberList = ViewBag.ContactNumberList;
     var monthList = ViewBag.MonthList;
     string errorMessage = ViewBag.errorMessage;
+    if (monthList == null)
+    {
+        errorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+    }
+
+    if (ContactNumberList == null)
+    {
+        errorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+    }
 }
 
 <h1>Edit</h1>
@@ -13,63 +22,63 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form method="post" asp-action="Edit">
             
             <input type="hidden" asp-for="VehicleId" />
             <div class="form-group">
                 <label asp-for="UserId" class="control-label">Contact Number</label>
-                <select asp-for="UserId" class="form-control" asp-items="ContactNumberList" type="text" id="userDetailId"></select>
-                <span asp-validation-for="UserId" class="text-danger"></span>
+                <select asp-for="UserId" class="form-control" asp-items="ContactNumberList" type="text" id="userDetailId" data-val="false"></select>
+                @*<span asp-validation-for="UserId" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="VehicleRegNumber" class="control-label">Registration Number</label>
                 <input asp-for="VehicleRegNumber" class="form-control" type="text" id="registrationNumber" />
-                <span asp-validation-for="VehicleRegNumber" class="text-danger"></span>
+                @*<span asp-validation-for="VehicleRegNumber" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="ChassisNumber" class="control-label">Chasis Number</label>
                 <input asp-for="ChassisNumber" class="form-control" type="text" id="chasisNumber" />
-                <span asp-validation-for="ChassisNumber" class="text-danger"></span>
+                @*<span asp-validation-for="ChassisNumber" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="EngineNumber" class="control-label">Engine Number</label>
                 <input asp-for="EngineNumber" class="form-control" type="text" id="engineNumber" />
-                <span asp-validation-for="EngineNumber" class="text-danger"></span>
+                @*<span asp-validation-for="EngineNumber" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="Make" class="control-label">Make</label>
                 <input asp-for="Make" class="form-control" type="text" id="make" />
-                <span asp-validation-for="Make" class="text-danger"></span>
+                @*<span asp-validation-for="Make" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="MakeMonth" class="control-label">Make Month</label>
-                <select asp-for="MakeMonth" class="form-control" asp-items="monthList" id="makeMonth" type="text"></select>
-                <span asp-validation-for="MakeMonth" class="text-danger"></span>
+                <select asp-for="MakeMonth" class="form-control" asp-items="monthList" id="makeMonth" type="text" data-val="false"></select>
+                @*<span asp-validation-for="MakeMonth" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="MakeYear" class="control-label">Make Year</label>
-                <input asp-for="MakeYear" class="form-control" type="text" id="makeYear" />
-                <span asp-validation-for="MakeYear" class="text-danger"></span>
+                <input asp-for="MakeYear" class="form-control" type="text" id="makeYear" data-val="false" />
+                @*<span asp-validation-for="MakeYear" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="PurchaseDate" class="control-label">Purchase Date</label>
-                <input asp-for="PurchaseDate" class="form-control" type="text" id="purchaseDate" />
-                <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+                <input asp-for="PurchaseDate" class="form-control" type="text" id="purchaseDate" data-val="false"/>
+                @*<span asp-validation-for="PurchaseDate" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="CurrentOdometerReading" class="control-label">Current Odometer Reading</label>
-                <input asp-for="CurrentOdometerReading" class="form-control" type="text" id="currentOdometerReading" />
-                <span asp-validation-for="CurrentOdometerReading" class="text-danger"></span>
+                <input asp-for="CurrentOdometerReading" class="form-control" type="text" id="currentOdometerReading" data-val="false"/>
+                @*<span asp-validation-for="CurrentOdometerReading" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                <input asp-for="CreatedDate" class="form-control" data-val="false"/>
+                @*<span asp-validation-for="CreatedDate" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="UpdatedDate" class="control-label"></label>
-                <input asp-for="UpdatedDate" class="form-control" />
-                <span asp-validation-for="UpdatedDate" class="text-danger"></span>
+                <input asp-for="UpdatedDate" class="form-control" data-val="false"/>
+                @*<span asp-validation-for="UpdatedDate" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <button type="submit" id="save" class="btn btn-primary">Save</button>

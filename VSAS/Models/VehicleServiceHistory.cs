@@ -15,27 +15,27 @@ namespace VSAS.Models
         public long ServiceHistoryId { get; set; }
 
         
-        [Required]
+        //[Required]
         public long VehicleId { get; set; }
 
-        [Required]
+        //[Required]
         public int OdometerReading { get; set; }
 
-        [Required]
+        //[Required]
         public DateTime ServiceDoneDate { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        //[Required]
+        //[StringLength(100)]
         public string ServiceDetails { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        //[Required]
+        //[StringLength(100)]
         public string ServiceDealerDetails { get; set; }
 
-        [Required]
+        //[Required]
         public DateTime NextServiceDueDate { get; set; }
 
-        [Required]
+        //[Required]
         public DateTime CreatedDate { get; set; }
 
         public DateTime? UpdatedDate { get; set; }

@@ -43,6 +43,61 @@ namespace VSAS.Controllers
         [Route("/VehicleServiceHistory/Create")]
         public IActionResult Create(VehicleServiceHistory vehicleServiceHistory)
         {
+            
+            if (vehicleServiceHistory.OdometerReading <= 0)
+            {
+                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                return View();
+            }
+
+            
+            if (vehicleServiceHistory.ServiceDoneDate == null)
+            {
+                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                return View();
+            }
+
+            
+            if (string.IsNullOrEmpty(vehicleServiceHistory.ServiceDetails))
+            {
+                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                return View();
+            }
+            else if (vehicleServiceHistory.ServiceDetails.Length > 100)
+            {
+                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                return View();
+            }
+
+            
+            if (string.IsNullOrEmpty(vehicleServiceHistory.ServiceDealerDetails))
+            {
+                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                return View();
+            }
+            else if (vehicleServiceHistory.ServiceDealerDetails.Length > 100)
+            {
+                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                return View();
+            }
+
+            
+            if (vehicleServiceHistory.NextServiceDueDate == null)
+            {
+                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                return View();
+            }
+
+            
+            if (vehicleServiceHistory.CreatedDate == null)
+            {
+                ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                return View();
+            }
+
+            
+
+
             if (ModelState.IsValid)
             {
                 var vehicle = _context.VehicleDetail.FirstOrDefault(v => v.VehicleId == vehicleServiceHistory.VehicleId);
@@ -50,10 +105,18 @@ namespace VSAS.Controllers
                 {
                     vehicleServiceHistory.CreatedDate = DateTime.Now;
                     vehicle.CurrentOdometerReading = vehicleServiceHistory.OdometerReading;
-                    _context.Update(vehicle);
-                    _context.VehicleServiceHistory.Add(vehicleServiceHistory);
-                    _context.SaveChanges();
-                    return RedirectToAction("Index", "VehicleServiceHistory");
+                    try
+                    {
+                        _context.Update(vehicle);
+                        _context.VehicleServiceHistory.Add(vehicleServiceHistory);
+                        _context.SaveChanges();
+                        return RedirectToAction("Index", "VehicleServiceHistory");
+                    }
+                    catch
+                    {
+                        ViewBag.ErrorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+                        return View();
+                    }
                 }
                 else
                 {

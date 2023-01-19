@@ -2,8 +2,12 @@
 
 @{
     ViewData["Title"] = "Create";
-    string errorMessage = ViewBag.errorMessage;
+    string errorMessage = ViewBag.ErrorMessage;
     var vehicleList = ViewBag.vehicleList;
+    if(vehicleList == null)
+            {
+                errorMessage = "Service Done Date should be greater than Purchase Date and Odometer Reading should be greater than current odometer reading.";
+            }
 }
 
 <h1>Create</h1>
@@ -20,33 +24,33 @@
             <div class="form-group">
                 <label asp-for="OdometerReading">Odometer Reading</label>
                 <input asp-for="OdometerReading" class="form-control" id="odometerReading" />
-                <span asp-validation-for="OdometerReading" class="text-danger"></span>
+                @*<span asp-validation-for="OdometerReading" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="ServiceDoneDate">Service Done Date</label>
                 <input asp-for="ServiceDoneDate" type="datetime-local" class="form-control" id="serviceDoneDate" />
-                <span asp-validation-for="ServiceDoneDate" class="text-danger"></span>
+                @*<span asp-validation-for="ServiceDoneDate" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="ServiceDetails">Service Done Details</label>
                 <input asp-for="ServiceDetails" class="form-control" id="serviceDoneDetails" type="text" />
-                <span asp-validation-for="ServiceDetails" class="text-danger"></span>
+                @*<span asp-validation-for="ServiceDetails" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="ServiceDealerDetails">Service Dealer Details</label>
                 <input asp-for="ServiceDealerDetails" class="form-control" id="serviceDealerDetails" type="text" />
-                <span asp-validation-for="ServiceDealerDetails" class="text-danger"></span>
+                @*<span asp-validation-for="ServiceDealerDetails" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="NextServiceDueDate">Next Service Due Date</label>
                 <input asp-for="NextServiceDueDate" type="datetime-local" class="form-control" id="nextServiceDueDate" />
-                <span asp-validation-for="NextServiceDueDate" class="text-danger"></span>
+                @*<span asp-validation-for="NextServiceDueDate" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <button type="submit" id="save" class="btn btn-primary">Save</button>
             </div>
             <div class="form-group">
-                <span class="text-danger" id="errorMessage">@errorMessage</span>
+                <div  id="errorMessage">@errorMessage</div>
             </div>
         </form>
     </div>
